@@ -1,0 +1,43 @@
+{
+  "population": [
+    {
+      "name": "Alice",
+      "budget": 150,
+      "shopping_list": [
+        "Vampire",
+        "Witch"
+      ]
+    },
+    {
+      "name": "Bob",
+      "budget": 80,
+      "shopping_list": [
+        "Zombie",
+        "Ghost"
+      ]
+    },
+    {
+      "name": "Charlie",
+      "budget": 100,
+      "shopping_list": [
+        "Mummy",
+        "Werewolf"
+      ]
+    },
+    {
+      "name": "Diana",
+      "budget": 200,
+      "shopping_list": [
+        "Skeleton",
+        "Pirate"
+      ]
+    },
+    {
+      "name": "Edward",
+      "budget": 50,
+      "shopping_list": [
+        "Pumpkin"
+      ]
+    }
+  ]
+}

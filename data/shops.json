@@ -1,0 +1,121 @@
+{
+  "costume_shops": [
+    {
+      "name": "Spooky Store",
+      "costumes": [
+        {
+          "name": "Vampire",
+          "stock": 10
+        },
+        {
+          "name": "Witch",
+          "stock": 8
+        },
+        {
+          "name": "Zombie",
+          "stock": 15
+        },
+        {
+          "name": "Ghost",
+          "stock": 12
+        }
+      ],
+      "prices": [
+        {
+          "name": "Vampire",
+          "price": 30
+        },
+        {
+          "name": "Witch",
+          "price": 25
+        },
+        {
+          "name": "Zombie",
+          "price": 20
+        },
+        {
+          "name": "Ghost",
+          "price": 15
+        }
+      ]
+    },
+    {
+      "name": "Haunted Attire",
+      "costumes": [
+        {
+          "name": "Mummy",
+          "stock": 6
+        },
+        {
+          "name": "Werewolf",
+          "stock": 5
+        },
+        {
+          "name": "Skeleton",
+          "stock": 10
+        },
+        {
+          "name": "Pirate",
+          "stock": 7
+        }
+      ],
+      "prices": [
+        {
+          "name": "Mummy",
+          "price": 35
+        },
+        {
+          "name": "Werewolf",
+          "price": 40
+        },
+        {
+          "name": "Skeleton",
+          "price": 25
+        },
+        {
+          "name": "Pirate",
+          "price": 30
+        }
+      ]
+    },
+    {
+      "name": "Frightful Fashions",
+      "costumes": [
+        {
+          "name": "Pumpkin",
+          "stock": 20
+        },
+        {
+          "name": "Vampire",
+          "stock": 5
+        },
+        {
+          "name": "Ghost",
+          "stock": 10
+        },
+        {
+          "name": "Pirate",
+          "stock": 3
+        }
+      ],
+      "prices": [
+        {
+          "name": "Pumpkin",
+          "price": 10
+        },
+        {
+          "name": "Vampire",
+          "price": 28
+        },
+        {
+          "name": "Ghost",
+          "price": 12
+        },
+        {
+          "name": "Pirate",
+          "price": 32
+        }
+      ]
+    }
+  ]
+}
