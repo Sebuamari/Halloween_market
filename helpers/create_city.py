@@ -1,4 +1,4 @@
-from models import City, Customer, CostumeShop
+from models import City, Customer, CostumeShop, Costume
 from helpers import read_json
 
 def create_city():
@@ -14,13 +14,27 @@ def create_city():
             citizen['wishlist']
         ) for citizen in population_data
     ]
+
+    # Creating and returning City object based on JSON data
+    city = City("Tbilisi", population)
+
+    # Creating objects from JSON data
+    costumes = [
+        Costume(
+            costume['name'],
+            costume['stock']
+        ) for costume_shop in costume_shops_data for costume in costume_shop['costumes']
+    ]
+
     costume_shops = [
         CostumeShop(
+            city,
             costume_shop['name'],
-            costume_shop['costumes'],
+            costumes,
             costume_shop['prices']
         ) for costume_shop in costume_shops_data
     ]
 
-    # Creating and returning City object based on JSON data
-    return City("Tbilisi", population, costume_shops)
+    city.add_shop(costume_shops)
+    city.simulate_demand()
+    return city

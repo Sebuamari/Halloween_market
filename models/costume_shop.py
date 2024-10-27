@@ -1,5 +1,6 @@
 class CostumeShop:
-    def __init__(self, name, costumes, prices):
+    def __init__(self, city, name, costumes, prices):
+        self.city = city
         self.name = name
         self.costumes = costumes
         self.prices = prices
@@ -8,7 +9,7 @@ class CostumeShop:
         costume_exists = False
         for costume in self.costumes:
             if costume.get('name') == costume_name:
-                costume['stock'] = costume['stock'] + stock
+                costume.stock += stock
                 costume_exists = True
 
         for costume in self.prices:
@@ -20,17 +21,20 @@ class CostumeShop:
             self.prices.append({'name': costume_name, 'price': price})
 
     def adjust_price(self, costume_name, new_price):
-        pass
+        self.prices[costume_name] = new_price
 
     def adjust_stock(self, costume_name, new_stock):
         self.costumes[costume_name] = new_stock
 
-    def adjust_demand(self, costume_name, new_demand):
+    def adjust_demand(self, costume_name, population):
+        pass
+
+    def generate_new_demand(self, old_price):
         pass
 
     def sell_costumes(self, costume_name, quantity):
-        pass
+        self.costumes[costume_name] -= quantity
 
     def report_stock(self):
         for costume in self.costumes:
-            print(f"Costume: {costume['name']}, stock: {costume['stock']}")
+            print(f"Costume: {costume.name}, stock: {costume.stock}")
