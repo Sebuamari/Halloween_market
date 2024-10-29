@@ -1,5 +1,3 @@
-from collections import Counter
-
 class City:
     def __init__(self, name, population):
         self.name = name
@@ -20,16 +18,20 @@ class City:
     def demand(self, new_demand):
         self.__demand = new_demand
 
-    def simulate_demand(self):
-        costumes = [item.name for costume_shop in self.costume_shops for item in costume_shop.costumes]
-        demand = Counter(costumes)
-        total_costumes = sum(demand.values())
-        self.demand = {
-            item: round((count / total_costumes) * 100, 2) for item, count in demand.items()
-        }
+    def count_demand(self):
+        costumes = set([item.name for costume_shop in self.costume_shops for item in costume_shop.costumes])
+
+        demand = {}
+        for costume in costumes:
+            for citizen in self.citizens:
+                for wishlist_costume in citizen.wishlist:
+                    if costume == wishlist_costume:
+                        demand[costume] = demand.get(costume, 0) + 1
+
+        self.demand = demand
 
     def report(self):
         for shop in self.costume_shops:
-            print(f"Costume shop: \"{shop['name']}\" ")
-            for item in shop['costumes']:
-                print(f"    Item: {item['name']}, Stock: {item['stock']}")
+            print(f"Costume shop: \"{shop.name}\" ")
+            for item in shop.costumes:
+                print(f"    Item: {item.name}, Stock: {item.stock}")

@@ -5,7 +5,7 @@
       "costumes": [
         {
           "name": "Vampire",
-          "stock": 10
+          "stock": 2
         },
         {
           "name": "Witch",
@@ -16,8 +16,16 @@
           "stock": 15
         },
         {
+          "name": "Skeleton",
+          "stock": 2
+        },
+        {
           "name": "Ghost",
           "stock": 12
+        },
+        {
+          "name": "Pirate",
+          "stock": 7
         }
       ],
       "prices": [
@@ -34,8 +42,16 @@
           "price": 20
         },
         {
+          "name": "Skeleton",
+          "price": 5
+        },
+        {
           "name": "Ghost",
           "price": 15
+        },
+        {
+          "name": "Pirate",
+          "price": 200
         }
       ]
     },
@@ -49,6 +65,10 @@
         {
           "name": "Werewolf",
           "stock": 5
+        },
+        {
+          "name": "Zombie",
+          "stock": 2
         },
         {
           "name": "Skeleton",
@@ -69,51 +89,16 @@
           "price": 40
         },
         {
+          "name": "Zombie",
+          "price": 15
+        },
+        {
           "name": "Skeleton",
           "price": 25
         },
         {
           "name": "Pirate",
           "price": 30
-        }
-      ]
-    },
-    {
-      "name": "Frightful Fashions",
-      "costumes": [
-        {
-          "name": "Pumpkin",
-          "stock": 20
-        },
-        {
-          "name": "Vampire",
-          "stock": 5
-        },
-        {
-          "name": "Ghost",
-          "stock": 10
-        },
-        {
-          "name": "Pirate",
-          "stock": 3
-        }
-      ],
-      "prices": [
-        {
-          "name": "Pumpkin",
-          "price": 10
-        },
-        {
-          "name": "Vampire",
-          "price": 28
-        },
-        {
-          "name": "Ghost",
-          "price": 12
-        },
-        {
-          "name": "Pirate",
-          "price": 32
         }
       ]
     }

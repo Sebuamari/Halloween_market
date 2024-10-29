@@ -19,22 +19,15 @@ def create_city():
     city = City("Tbilisi", population)
 
     # Creating objects from JSON data
-    costumes = [
-        Costume(
-            costume['name'],
-            costume['stock']
-        ) for costume_shop in costume_shops_data for costume in costume_shop['costumes']
-    ]
-
     costume_shops = [
         CostumeShop(
             city,
             costume_shop['name'],
-            costumes,
+            [Costume(costume['name'], costume['stock']) for costume in costume_shop['costumes']],
             costume_shop['prices']
         ) for costume_shop in costume_shops_data
     ]
 
     city.add_shop(costume_shops)
-    city.simulate_demand()
+    city.count_demand()
     return city

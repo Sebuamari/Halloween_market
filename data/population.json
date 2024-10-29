@@ -4,8 +4,9 @@
       "name": "Alice",
       "budget": 150,
       "wishlist": [
-        "Vampire",
-        "Witch"
+        "Witch",
+        "Werewolf",
+        "Skeleton"
       ]
     },
     {
@@ -13,6 +14,9 @@
       "budget": 80,
       "wishlist": [
         "Zombie",
+        "Werewolf",
+        "Mummy",
+        "Vampire",
         "Ghost"
       ]
     },
@@ -21,22 +25,9 @@
       "budget": 100,
       "wishlist": [
         "Mummy",
-        "Werewolf"
-      ]
-    },
-    {
-      "name": "Diana",
-      "budget": 200,
-      "wishlist": [
-        "Skeleton",
+        "Werewolf",
+        "Vampire",
         "Pirate"
-      ]
-    },
-    {
-      "name": "Edward",
-      "budget": 50,
-      "wishlist": [
-        "Pumpkin"
       ]
     }
   ]
