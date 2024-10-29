@@ -16,26 +16,31 @@ class CostumeShop:
     def income(self, new_income):
         self.__income = new_income
 
-    def add_costume(self, costume_name, stock, price):
+    def add_costume(self, costume_name, stock, price=0):
         costume_exists = False
         for costume in self.costumes:
-            if costume.get('name') == costume_name:
+            if costume.name == costume_name:
+                old_stock = costume.stock
                 costume.stock += stock
+                self.adjust_price(costume_name, old_stock - costume.stock)
                 costume_exists = True
-
-        for costume in self.prices:
-            if costume.get('name') == costume_name:
-                costume['price'] = (costume['price'] + price) / 2
 
         if not costume_exists:
             self.costumes.append({'name': costume_name, 'stock': stock})
             self.prices.append({'name': costume_name, 'price': price})
 
-    def adjust_price(self, costume_name, new_price):
-        self.prices[costume_name] = new_price
+    def adjust_price(self, costume_name, stock_change=0):
+        for costume in self.prices:
+            if costume['name'] == costume_name:
+                # for each sold item, price changes
+                costume['price'] = round(costume['price'] * (1 + stock_change / 100), 2)
 
     def adjust_stock(self, costume_name, new_stock):
-        self.costumes[costume_name] = new_stock
+        for costume in self.costumes:
+            if costume.name == costume_name:
+                old_stock = costume.stock
+                costume.stock = new_stock
+                self.adjust_price(costume.name, old_stock - costume.stock)
 
     def adjust_demand(self, costume_name, population):
         pass
@@ -69,7 +74,8 @@ class CostumeShop:
     def sell_costume(self, costume_name, quantity=1):
         for costume in self.costumes:
             if costume.name == costume_name:
-                costume.stock -= quantity
+                self.adjust_stock(costume_name, costume.stock - quantity)
+                self.income += [item['price'] for item in self.prices if item['name'] == costume_name][0] * quantity
 
         return [item['price'] for item in self.prices if item['name'] == costume_name][0] * quantity
 
