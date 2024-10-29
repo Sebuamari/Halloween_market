@@ -66,8 +66,12 @@ class CostumeShop:
             "affordable_combos": affordable_combos
         }
 
-    def sell_costumes(self, costume_name, quantity):
-        self.costumes[costume_name] -= quantity
+    def sell_costume(self, costume_name, quantity=1):
+        for costume in self.costumes:
+            if costume.name == costume_name:
+                costume.stock -= quantity
+
+        return [item['price'] for item in self.prices if item['name'] == costume_name][0] * quantity
 
     def report_stock(self):
         for costume in self.costumes:

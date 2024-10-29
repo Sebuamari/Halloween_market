@@ -13,8 +13,10 @@ class Customer:
     def budget(self, new_budget):
         self.__budget = new_budget
 
-    def buy_costume(self, shop, costume_name, quantity):
-        pass
+    def buy_costume(self, shop, costume_name, quantity=1):
+        total_price = shop.sell_costume(costume_name)
+        self.shopping_list.append(costume_name)
+        self.budget -= total_price
 
     def check_budget(self, costume_price):
         return self.budget > costume_price

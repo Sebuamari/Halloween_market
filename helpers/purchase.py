@@ -26,5 +26,11 @@ def find_best_purchase_combo(customer, costume_shops):
     best_combo_details = [(shop_name, items, cost) for shop_name, (items, cost) in best_combo]
     return best_combo_details, best_total_cost
 
-def purchase_costumes(costumer, stores):
-    best_purchase_combo = find_best_purchase_combo(costumer, stores)
+def purchase_costumes(customer, costume_shops):
+    best_purchase_combo = find_best_purchase_combo(customer, costume_shops)[0]
+
+    for purchase in best_purchase_combo:
+        for costume_shop in costume_shops:
+            if costume_shop.name == purchase[0]:
+                for costume in purchase[1]:
+                    customer.buy_costume(costume_shop, costume[0])
