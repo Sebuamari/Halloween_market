@@ -35,27 +35,27 @@ class CostumeShop:
                 # for each sold item, price changes
                 costume['price'] = round(costume['price'] * (1 + stock_change / 100), 2)
 
-    def adjust_stock(self, costume_name, new_stock):
+    def adjust_stock(self, costume_name, quantity=1):
         for costume in self.costumes:
             if costume.name == costume_name:
                 old_stock = costume.stock
-                costume.stock = new_stock
+                costume.stock -= quantity
                 self.adjust_price(costume.name, old_stock - costume.stock)
 
-    def adjust_demand(self, costume_name, population):
-        pass
+    # def adjust_demand(self, costume_name, population):
+    #     pass
+    #
+    # def generate_new_demand(self, old_price):
+    #     pass
 
-    def generate_new_demand(self, old_price):
-        pass
-
+    # Generates list of costumes from customer's wishlist that are available in the store
     def find_affordable_combo(self, customer):
         available_costumes = {
             wishlist_costume: price_info['price']
             for wishlist_costume in customer.wishlist
             for price_info in self.prices
-            if
-                any(costume.name == wishlist_costume for costume in self.costumes)
-                and price_info['name'] == wishlist_costume
+            if any(costume.name == wishlist_costume and costume.stock > 0 for costume in self.costumes)
+               and price_info['name'] == wishlist_costume
         }
 
         affordable_combos = []
@@ -75,7 +75,7 @@ class CostumeShop:
         total_cost = 0
 
         for costume in self.costumes:
-            if costume.name == costume_name:
+            if costume.name == costume_name and costume.stock >= quantity:
                 total_cost = round([item['price'] for item in self.prices if item['name'] == costume_name][0] * quantity, 2)
                 self.income += total_cost
 
@@ -87,5 +87,6 @@ class CostumeShop:
                 self.adjust_stock(costume_name, costume.stock - quantity)
 
     def report_stock(self):
+        print(f"    {self.name}")
         for costume in self.costumes:
-            print(f"Costume: {costume.name}, stock: {costume.stock}")
+            print(f"        Costume: {costume.name}, stock: {costume.stock}")
