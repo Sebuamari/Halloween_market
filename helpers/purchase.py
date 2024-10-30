@@ -43,8 +43,12 @@ def find_best_purchase_combo(customer, costume_shops):
 
     for costume_shop in costume_shops:
         affordable_combos = costume_shop.find_affordable_combo(customer)
-        for combo in affordable_combos['affordable_combos']:
-            best_combos.append((costume_shop.name, combo))
+
+        if not any(len(combo) for combo in affordable_combos['affordable_combos']) > 0:
+            raise ValueError(f"{customer.name} can't afford buying any costumes.\n")
+        else:
+            for combo in affordable_combos['affordable_combos']:
+                best_combos.append((costume_shop.name, combo))
 
     best_combo = []
     best_total_cost = float('inf')
@@ -68,13 +72,17 @@ def find_best_purchase_combo(customer, costume_shops):
 
 def purchase_costumes(customer, costume_shops):
     best_purchase_combo = find_best_purchase_combo(customer, costume_shops)[0]
-    print(f"{customer.name} starts shopping with budget of {customer.budget}")
+    print(f"{customer.name} starts shopping with budget of {customer.budget} and his "
+          f"wishlist looks like this: {customer.wishlist}")
 
     for purchase in best_purchase_combo:
         for costume_shop in costume_shops:
             if costume_shop.name == purchase[0]:
                 for costume in purchase[1]:
-                    customer.buy_costume(costume_shop, costume[0])
+                    try:
+                        customer.buy_costume(costume_shop, costume[0])
+                    except ValueError as e:
+                        print(e)
 
     for purchase in best_purchase_combo:
         for costume_shop in costume_shops:
