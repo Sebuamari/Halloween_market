@@ -48,10 +48,10 @@ class CostumeShop:
     def generate_new_demand(self, old_price):
         pass
 
-    def find_affordable_combo(self, wishlist, budget):
+    def find_affordable_combo(self, customer):
         available_costumes = {
             wishlist_costume: price_info['price']
-            for wishlist_costume in wishlist
+            for wishlist_costume in customer.wishlist
             for price_info in self.prices
             if
                 any(costume.name == wishlist_costume for costume in self.costumes)
@@ -63,7 +63,7 @@ class CostumeShop:
         for r in range(1, len(available_costumes) + 1):
             for combo in combinations(available_costumes.items(), r):
                 total_cost = sum(price for _, price in combo)
-                if total_cost <= budget:
+                if customer.check_budget(total_cost):
                     affordable_combos.append((combo, total_cost))
 
         return {
@@ -72,12 +72,19 @@ class CostumeShop:
         }
 
     def sell_costume(self, costume_name, quantity=1):
+        total_cost = 0
+
+        for costume in self.costumes:
+            if costume.name == costume_name:
+                total_cost = round([item['price'] for item in self.prices if item['name'] == costume_name][0] * quantity, 2)
+                self.income += total_cost
+
+        return total_cost
+
+    def adjust_stocks(self, costume_name, quantity=1):
         for costume in self.costumes:
             if costume.name == costume_name:
                 self.adjust_stock(costume_name, costume.stock - quantity)
-                self.income += [item['price'] for item in self.prices if item['name'] == costume_name][0] * quantity
-
-        return [item['price'] for item in self.prices if item['name'] == costume_name][0] * quantity
 
     def report_stock(self):
         for costume in self.costumes:

@@ -1,3 +1,5 @@
+from collections import Counter
+
 class Customer:
     def __init__(self, name, budget, wishlist):
         self.name = name
@@ -11,7 +13,7 @@ class Customer:
 
     @budget.setter
     def budget(self, new_budget):
-        self.__budget = new_budget
+        self.__budget = round(new_budget, 2)
 
     def buy_costume(self, shop, costume_name, quantity=1):
         total_price = shop.sell_costume(costume_name)
@@ -22,4 +24,8 @@ class Customer:
         return self.budget > costume_price
 
     def shop_report(self):
-        print(f"{self.name}'s current budget is {self.budget()}")
+        costume_counts = Counter(self.shopping_list)
+        costume_summary = ', '.join([f"{costume} (x{count})" for costume, count in costume_counts.items()])
+
+        print(f"{self.name} purchased costumes of: [{costume_summary}]")
+        print(f"{self.name}'s current budget is {self.budget}")

@@ -4,7 +4,7 @@ def find_best_purchase_combo(customer, costume_shops):
     best_combos = []
 
     for costume_shop in costume_shops:
-        affordable_combos = costume_shop.find_affordable_combo(customer.wishlist, customer.budget)
+        affordable_combos = costume_shop.find_affordable_combo(customer)
         for combo in affordable_combos['affordable_combos']:
             best_combos.append((costume_shop.name, combo))
 
@@ -34,3 +34,9 @@ def purchase_costumes(customer, costume_shops):
             if costume_shop.name == purchase[0]:
                 for costume in purchase[1]:
                     customer.buy_costume(costume_shop, costume[0])
+
+    for purchase in best_purchase_combo:
+        for costume_shop in costume_shops:
+            if costume_shop.name == purchase[0]:
+                for costume in purchase[1]:
+                    costume_shop.adjust_stocks(costume[0])

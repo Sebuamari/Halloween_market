@@ -30,4 +30,5 @@ def create_city():
 
     city.add_shop(costume_shops)
     city.count_demand()
+    city.simulate_demand()
     return city
