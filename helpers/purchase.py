@@ -57,7 +57,8 @@ def find_best_purchase_combo(customer, costume_shops):
     for r in range(1, len(best_combos) + 1):
         for combo in combinations(best_combos, r):
             total_cost = sum(cost for _, (_, cost) in combo)
-            total_items = sum(len(items) for _, (items, _) in combo)
+            item_lengths = [len(items) for _, (items, _) in combo]
+            total_items = sum(item_lengths)
 
             if total_cost <= customer.budget:
                 if (total_items > best_count) or (total_items == best_count and total_cost < best_total_cost):

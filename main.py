@@ -10,7 +10,7 @@ try:
         try:
             purchase.purchase_costumes(citizen, city.costume_shops)
             citizen.shop_report()
-        except ValueError as e:
+        except Exception as e:
             print(e)
 
     print("Costume shop stocks after the shopping day:")
