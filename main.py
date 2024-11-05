@@ -1,10 +1,10 @@
-from helpers import create_city, purchase, print_shop_reports
+from helpers import create_city, purchase
 
 try:
     city = create_city()
 
     print("Costume shop stocks before shopping day starts:")
-    print_shop_reports(city)
+    city.report()
 
     for citizen in city.citizens:
         try:
@@ -14,6 +14,6 @@ try:
             print(e)
 
     print("Costume shop stocks after the shopping day:")
-    print_shop_reports(city)
+    city.report()
 except AttributeError as e:
     print(f"An unexpected error occurred: {e}")

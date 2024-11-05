@@ -48,6 +48,8 @@ class City:
 
     def report(self):
         for shop in self.costume_shops:
-            print(f"Costume shop: \"{shop.name}\", income: {shop.income} ")
+            print(f"    Costume shop: \"{shop.name}\", income: {shop.income} ")
             for item in shop.costumes:
-                print(f"    Item: {item.name}, Stock: {item.stock}")
+                print(f"        Item: {item.name}, stock: {item.stock}")
+
+        print()
