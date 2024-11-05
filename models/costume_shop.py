@@ -92,6 +92,6 @@ class CostumeShop:
                 self.adjust_stock(costume_name, costume.stock - quantity)
 
     def report_stock(self):
-        print(f"    {self.name}")
+        print(f"    {self.name}, income: {self.income}")
         for costume in self.costumes:
             print(f"        Costume: {costume.name}, stock: {costume.stock}")
